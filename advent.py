@@ -80,18 +80,30 @@ print("Challenge 2.2 answer:", ch22_count_horizontal * ch22_count_depth)
 gamma = ""
 epsilon = ""
 input3_length = len(day3_input[0])
-counter = 0
+ch31_counter = 0
 
 for i in range(input3_length):
 
     for elm in day3_input:
-        counter += int(elm[i])
-    if counter > (len(day3_input) / 2):
+        ch31_counter += int(elm[i])
+    if ch31_counter > (len(day3_input) / 2):
         gamma += "1"
         epsilon += "0"
     else:
         gamma += "0"
         epsilon += "1"
-    counter = 0
+    ch31_counter = 0
 
 print("Challenge 3.1 answer:", int(gamma, 2) * int(epsilon, 2))
+
+# Challenge 3.2
+
+oxygen = 0
+scrubber = 0
+input3_length = len(day3_input[0])
+ch32_counter = 0
+
+for i in range(input3_length):
+    for elm in day3_input:
+        ch31_counter += int(elm[i])
+    if ch31_counter > (len(day3_input) / 2):
