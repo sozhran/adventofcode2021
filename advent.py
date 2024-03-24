@@ -1,3 +1,5 @@
+import copy
+
 ## Data preparation
 
 day1_read_file = open('./day1.txt', 'r')
@@ -84,8 +86,8 @@ ch31_counter = 0
 
 for i in range(input3_length):
 
-    for elm in day3_input:
-        ch31_counter += int(elm[i])
+    for column in day3_input:
+        ch31_counter += int(column[i])
     if ch31_counter > (len(day3_input) / 2):
         gamma += "1"
         epsilon += "0"
@@ -98,12 +100,47 @@ print("Challenge 3.1 answer:", int(gamma, 2) * int(epsilon, 2))
 
 # Challenge 3.2
 
-oxygen = 0
-scrubber = 0
 input3_length = len(day3_input[0])
-ch32_counter = 0
+
+oxygen = day3_input.copy()
+scrubber = day3_input.copy()
+oxygen_counter = 0
+scrubber_counter = 0
+oxygen_value = ""
+scrubber_value = ""
+oxygen_temp = []
+scrubber_temp = []
 
 for i in range(input3_length):
-    for elm in day3_input:
-        ch31_counter += int(elm[i])
-    if ch31_counter > (len(day3_input) / 2):
+    for row in oxygen:
+        oxygen_counter += int(row[i])
+    if oxygen_counter >= (len(oxygen) / 2):
+        oxygen_value = "1"
+    else: 
+        oxygen_value = "0"
+    for row in oxygen:
+        if row[i] == oxygen_value:
+            oxygen_temp.append(row)
+    oxygen = oxygen_temp
+    oxygen_temp = []
+    oxygen_counter = 0
+
+for i in range(input3_length):
+    for row in scrubber:
+        scrubber_counter += int(row[i])
+    if scrubber_counter >= (len(scrubber) / 2):
+        scrubber_value = "0"
+    else: 
+        scrubber_value = "1"
+    for row in scrubber:
+        if row[i] == scrubber_value:
+            scrubber_temp.append(row)
+    if len(scrubber_temp) > 0:
+        scrubber = scrubber_temp
+    scrubber_temp = []
+    scrubber_counter = 0
+
+print(len(oxygen))
+print(len(scrubber))
+
+print("Challenge 3.2 answer:", int(oxygen[0], 2) * int(scrubber[0], 2))
